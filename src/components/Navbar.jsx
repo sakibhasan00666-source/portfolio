@@ -8,40 +8,52 @@ export default function Navbar({ theme }) {
   const links = [
     { name: "Home", link: "#home" },
     { name: "About", link: "#about" },
-    { name: "Skills", link: "#skills" },
     { name: "Resume", link: "#resume" },
+    { name: "Services", link: "#services" },
     { name: "Portfolio", link: "#portfolio" },
     { name: "FAQ", link: "#faq" },
     { name: "Client", link: "#client" },
     { name: "Contact", link: "#contact" },
   ];
 
-  // scroll spy
+  // Scroll Spy
   useEffect(() => {
     const handleScroll = () => {
+      let current = "#home";
+
       links.forEach((item) => {
         const section = document.querySelector(item.link);
         if (section) {
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom >= 120) {
-            setActive(item.link);
+          const top = section.offsetTop - 200;
+          const bottom = top + section.offsetHeight;
+
+          if (window.scrollY >= top && window.scrollY < bottom) {
+            current = item.link;
           }
         }
       });
+
+      setActive(current);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Smooth scroll
   const scrollTo = (e, link) => {
     e.preventDefault();
+
     const section = document.querySelector(link);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setActive(link);
-      setOpen(false);
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
+
+    setActive(link);
+    setOpen(false);
   };
 
   return (
@@ -49,23 +61,22 @@ export default function Navbar({ theme }) {
       <div className="container mx-auto flex justify-between items-center p-5">
 
         {/* LOGO */}
-        <h1 className="text-4xl font-bold">Portfolio</h1>
+        <h1 className="text-3xl font-bold">Portfolio</h1>
 
         {/* DESKTOP MENU */}
         <nav className="hidden md:flex space-x-8">
-
           {links.map((item) => (
             <a
               key={item.link}
               href={item.link}
               onClick={(e) => scrollTo(e, item.link)}
-              className={`relative group font-bold ${
+              className={`relative font-semibold transition ${
                 active === item.link ? "text-black" : "text-gray-600"
               }`}
             >
               {item.name}
 
-              {/* UNDERLINE */}
+              {/* underline */}
               <span
                 className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${
                   active === item.link
@@ -75,33 +86,32 @@ export default function Navbar({ theme }) {
               />
             </a>
           ))}
-
         </nav>
 
         {/* MOBILE BUTTON */}
-        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+        <button
+          className="md:hidden text-2xl"
+          onClick={() => setOpen(!open)}
+        >
           {open ? <FiX /> : <FiMenu />}
         </button>
-
       </div>
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden flex flex-col items-center gap-6 py-10 bg-white">
-
+        <div className="md:hidden flex flex-col items-center gap-6 py-8 bg-white border-t">
           {links.map((item) => (
             <a
               key={item.link}
               href={item.link}
               onClick={(e) => scrollTo(e, item.link)}
-              className={`text-xl font-bold ${
+              className={`text-lg font-semibold ${
                 active === item.link ? "text-black" : "text-gray-600"
               }`}
             >
               {item.name}
             </a>
           ))}
-
         </div>
       )}
     </header>

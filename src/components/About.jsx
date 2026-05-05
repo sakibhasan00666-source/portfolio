@@ -2,19 +2,22 @@ import React from "react";
 
 export default function About({ theme }) {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-20">
+
         {/* HEADER */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16 mt-10">
           <p
-            className={`inline-block px-4 py-1 rounded-full text-sm tracking-[4px] mb-3 uppercase font-semibold text-white ${
+            className={`inline-block px-4 py-1 text-sm tracking-[4px] mb-3 uppercase font-semibold text-white ${
               theme?.primary || "bg-lime-500"
             }`}
           >
             About Me
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold">Know Me More</h2>
+          <h2 className="text-4xl md:text-5xl font-bold">
+            Know Me More
+          </h2>
         </div>
 
         {/* FULL WIDTH CONTENT */}
@@ -35,8 +38,8 @@ export default function About({ theme }) {
           </p>
         </div>
 
-        {/* DETAILS GRID (kept same) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14 text-start justify-between">
+        {/* DETAILS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 mb-10 text-start">
           <div>
             <p className="font-bold">Name:</p>
             <p className="text-gray-600">Sakib Hasan</p>
@@ -57,6 +60,7 @@ export default function About({ theme }) {
             <p className="text-gray-600">Mymensingh, Dhaka, BD</p>
           </div>
         </div>
+
       </div>
     </section>
   );

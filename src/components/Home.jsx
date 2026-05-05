@@ -44,7 +44,7 @@ export default function Home() {
 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, index]);
-<About theme={theme} />
+  <About theme={theme} />;
 
   const themes = [
     {
@@ -103,7 +103,8 @@ export default function Home() {
 
   return (
     <div
-      className={`${theme.bg} min-h-screen flex flex-col transition-all duration-500`}>
+      className={`${theme.bg} min-h-screen flex flex-col transition-all duration-500`}
+    >
       <Navbar theme={theme} />
       <main className="flex-1 flex items-center justify-center">
         <div
@@ -125,7 +126,7 @@ export default function Home() {
               based in Dhaka, Bangladesh.
             </p>
 
-            <button className=" px-8 py-4 font-bold bg-black text-white">
+            <button className="px-8 py-4 font-bold text-lg rounded-lg border border-black text-black hover:bg-black hover:text-white transition">
               View My Works
             </button>
 

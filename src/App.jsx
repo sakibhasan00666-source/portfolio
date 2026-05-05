@@ -3,11 +3,13 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Home from './components/Home';
 
-import Skills from './components/Skills';
+import Skills from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import About from './components/About';
 import Resume from './components/Resume';
+import Faq from './components/Faq';
+import Services from './components/Services';
 
 
 function App() {
@@ -22,7 +24,8 @@ function App() {
       <Home />
       <About/>
       <Resume/>
-      <Skills />
+      <Services/>
+      <Faq/>
       <Contact />
       <Footer />
     </main>
