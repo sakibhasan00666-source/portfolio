@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Faq() {
   const [open, setOpen] = useState(null);
@@ -34,7 +35,12 @@ export default function Faq() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
 
         {/* Left Side */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+        >
           <span className="bg-lime-400 px-2 py-1 text-sm font-semibold">
             FAQ
           </span>
@@ -45,15 +51,23 @@ export default function Faq() {
 
           <div className="space-y-3">
             {data.map((item, i) => (
-              <div
+              <motion.div
                 key={i}
                 className="border-b pb-3 cursor-pointer"
                 onClick={() => setOpen(open === i ? null : i)}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.2,
+                }}
               >
                 <div className="flex justify-between items-center">
                   <h3 className="text-gray-700 font-medium">
                     {item.q}
                   </h3>
+
                   <span className="text-xl">
                     {open === i ? "−" : "+"}
                   </span>
@@ -64,19 +78,25 @@ export default function Faq() {
                     {item.a}
                   </p>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Side Image */}
-        <div className="flex justify-center">
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           <img
             src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
             alt="FAQ"
             className="w-[320px]"
           />
-        </div>
+        </motion.div>
 
       </div>
     </section>
