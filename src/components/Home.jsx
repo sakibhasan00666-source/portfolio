@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FiSettings } from "react-icons/fi";
+
 import Navbar from "./Navbar";
 import About from "./About";
+import Resume from "./Resume";
+import Services from "./Services";
+import Faq from "./Faq";
 
 export default function Home() {
   const [theme, setTheme] = useState({
@@ -13,7 +17,6 @@ export default function Home() {
 
   const [open, setOpen] = useState(false);
 
-  // 🔥 TEXT LOOP ANIMATION
   const words = ["DESIGNER", "DEVELOPER"];
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
@@ -44,57 +47,16 @@ export default function Home() {
 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, index]);
-  <About theme={theme} />;
 
   const themes = [
-    {
-      name: "Green",
-      bg: "bg-lime-400",
-      primary: "bg-lime-500",
-      btn: "bg-black text-white hover:bg-gray-800",
-    },
-    {
-      name: "Blue",
-      bg: "bg-blue-400",
-      primary: "bg-blue-500",
-      btn: "bg-blue-600 text-white hover:bg-blue-800",
-    },
-    {
-      name: "Yellow",
-      bg: "bg-yellow-400",
-      primary: "bg-yellow-500",
-      btn: "bg-yellow-600 text-white hover:bg-yellow-800",
-    },
-    {
-      name: "Pink",
-      bg: "bg-pink-400",
-      primary: "bg-pink-500",
-      btn: "bg-pink-600 text-white hover:bg-pink-800",
-    },
-    {
-      name: "Orange",
-      bg: "bg-orange-400",
-      primary: "bg-orange-500",
-      btn: "bg-orange-600 text-white hover:bg-orange-800",
-    },
-    {
-      name: "Purple",
-      bg: "bg-purple-400",
-      primary: "bg-purple-500",
-      btn: "bg-purple-600 text-white hover:bg-purple-800",
-    },
-    {
-      name: "Red",
-      bg: "bg-red-400",
-      primary: "bg-red-500",
-      btn: "bg-red-600 text-white hover:bg-red-800",
-    },
-    {
-      name: "Teal",
-      bg: "bg-teal-400",
-      primary: "bg-teal-500",
-      btn: "bg-teal-600 text-white hover:bg-teal-800",
-    },
+    { name: "Green", bg: "bg-lime-400", primary: "bg-lime-500", btn: "bg-black text-white hover:bg-gray-800" },
+    { name: "Blue", bg: "bg-blue-400", primary: "bg-blue-500", btn: "bg-blue-600 text-white hover:bg-blue-800" },
+    { name: "Yellow", bg: "bg-yellow-400", primary: "bg-yellow-500", btn: "bg-yellow-600 text-white hover:bg-yellow-800" },
+    { name: "Pink", bg: "bg-pink-400", primary: "bg-pink-500", btn: "bg-pink-600 text-white hover:bg-pink-800" },
+    { name: "Orange", bg: "bg-orange-400", primary: "bg-orange-500", btn: "bg-orange-600 text-white hover:bg-orange-800" },
+    { name: "Purple", bg: "bg-purple-400", primary: "bg-purple-500", btn: "bg-purple-600 text-white hover:bg-purple-800" },
+    { name: "Red", bg: "bg-red-400", primary: "bg-red-500", btn: "bg-red-600 text-white hover:bg-red-800" },
+    { name: "Teal", bg: "bg-teal-400", primary: "bg-teal-500", btn: "bg-teal-600 text-white hover:bg-teal-800" },
   ];
 
   const scrollToContact = () => {
@@ -102,21 +64,22 @@ export default function Home() {
   };
 
   return (
-    <div
-      className={`${theme.bg} min-h-screen flex flex-col transition-all duration-500`}
-    >
+    <div className={`${theme.bg} min-h-screen flex flex-col transition-all duration-500`}>
+      
+      {/* Navbar */}
       <Navbar theme={theme} />
-      <main className="flex-1 flex items-center justify-center">
+
+      {/* Hero Section */}
+      <main className="flex-1 flex items-center justify-center min-h-screen">
         <div
           id="home"
-          className="container mx-auto flex flex-col md:flex-row items-center justify-center px-6 md:px-20 py-16"
+          className="container mx-auto flex flex-col md:flex-row items-center justify-center px-6 md:px-20 py-16 md:py-24"
         >
           <section className="flex-1 text-center md:text-left">
             <h1 className="text-3xl md:text-5xl text-black mb-4">
               HI, I'M A FREELANCER
             </h1>
 
-            {/* ANIMATED TEXT */}
             <h2 className="text-4xl md:text-8xl font-bold text-black mb-6">
               {text}
               <span className="animate-pulse">|</span>
@@ -138,7 +101,6 @@ export default function Home() {
             </button>
           </section>
 
-          {/* RIGHT IMAGE (SLIGHT RIGHT FIX) */}
           <figure className="flex-1 flex justify-center md:justify-end mt-10 md:mt-0">
             <img
               src="https://i.ibb.co.com/397PrJf9/Gemini-Generated-Image-xqz6l0xqz6l0xqz6.png"
@@ -149,8 +111,14 @@ export default function Home() {
         </div>
       </main>
 
-      {/* SETTINGS */}
-      <div className="fixed right-4 top-1/3">
+      {/* Sections */}
+      <About theme={theme} />
+      <Resume theme={theme} />
+      <Services theme={theme} />
+      <Faq theme={theme} />
+
+      {/* Theme Settings */}
+      <div className="fixed right-4 top-1/3 z-50">
         <button
           onClick={() => setOpen(!open)}
           className="bg-white p-3 rounded-full shadow-lg"

@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar({ theme }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#home");
 
   const links = [
-    { name: "Home", link: "#home" },
-    { name: "About", link: "#about" },
-    { name: "Resume", link: "#resume" },
-    { name: "Services", link: "#services" },
-    { name: "Portfolio", link: "#portfolio" },
+    { name: "HOME", link: "#home" },
+    { name: "ABOUT", link: "#about" },
+    { name: "RESUME", link: "#resume" },
+    { name: "SERVICES", link: "#services" },
+    { name: "PORTFOLIO", link: "#portfolio" },
     { name: "FAQ", link: "#faq" },
-    { name: "Client", link: "#client" },
-    { name: "Contact", link: "#contact" },
+    { name: "CLIENT", link: "#client" },
+    { name: "CONTACT", link: "#contact" },
   ];
 
   // Scroll Spy
@@ -57,26 +58,34 @@ export default function Navbar({ theme }) {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      <div className="container mx-auto flex justify-between items-center p-5">
+    <header className="fixed top-0 left-0 w-full bg-white z-50 border-b border-gray-200">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
         {/* LOGO */}
-        <h1 className="text-3xl font-bold">Portfolio</h1>
+        <h1 className="text-3xl font-extrabold tracking-wider">
+        Portfolio
+        </h1>
 
-        {/* DESKTOP MENU */}
+        {/* MENU */}
         <nav className="hidden md:flex space-x-8">
           {links.map((item) => (
             <a
               key={item.link}
               href={item.link}
               onClick={(e) => scrollTo(e, item.link)}
-              className={`relative font-semibold transition ${
-                active === item.link ? "text-black" : "text-gray-600"
-              }`}
+              className="relative group font-bold text-sm text-gray-600 hover:text-black transition"
             >
-              {item.name}
+              <span
+                className={
+                  active === item.link
+                    ? "text-black font-extrabold"
+                    : ""
+                }
+              >
+                {item.name}
+              </span>
 
-              {/* underline */}
+              {/* UNDERLINE */}
               <span
                 className={`absolute left-0 -bottom-1 h-[2px] transition-all duration-300 ${
                   active === item.link
@@ -87,6 +96,38 @@ export default function Navbar({ theme }) {
             </a>
           ))}
         </nav>
+
+        {/* SOCIAL ICONS */}
+        <div className="hidden md:flex items-center space-x-4">
+
+          <a
+            href="https://www.facebook.com/profile.php?id=100085485154422"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-blue-100 transition"
+          >
+            <FaFacebookF className="text-lg hover:text-blue-600" />
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/sakib-hasan-a3777b35b/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-blue-100 transition"
+          >
+            <FaLinkedinIn className="text-lg hover:text-blue-700" />
+          </a>
+
+          <a
+            href="https://wa.me/8801302631009?text=Hi%20Sakib,%20I%20want%20to%20contact%20you"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-green-100 transition"
+          >
+            <FaWhatsapp className="text-lg hover:text-green-500" />
+          </a>
+
+        </div>
 
         {/* MOBILE BUTTON */}
         <button
@@ -99,13 +140,13 @@ export default function Navbar({ theme }) {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden flex flex-col items-center gap-6 py-8 bg-white border-t">
+        <div className="md:hidden flex flex-col items-center gap-6 py-6 bg-white border-t">
           {links.map((item) => (
             <a
               key={item.link}
               href={item.link}
               onClick={(e) => scrollTo(e, item.link)}
-              className={`text-lg font-semibold ${
+              className={`text-lg font-bold ${
                 active === item.link ? "text-black" : "text-gray-600"
               }`}
             >
